@@ -1,8 +1,8 @@
 <!-- START : NAVBAR -->
 <div class="container">
   <nav class="row navbar navbar-expand-lg navbar-light bg-white">
-    <a href="#" class="navbar-brand">
-      <img src="./frontend/images/logo.png" alt="Logo Nomads" />
+    <a href="{{route('home')}}" class="navbar-brand">
+      <img src="{{url('./frontend/images/logo.png')}}" alt="Logo Nomads" />
     </a>
     <button
       class="navbar-toggler navbar-toggler-right"
@@ -16,7 +16,7 @@
     <div class="collapse navbar-collapse" id="navb">
       <ul class="navbar-nav ml-auto mr-3">
         <li class="nav-item mx-md-2">
-          <a href="#" class="nav-link active">Home</a>
+          <a href="{{url('/')}}" class="nav-link active">Home</a>
         </li>
         <li class="nav-item mx-md-2">
           <a href="#" class="nav-link">Paket Travel</a>
