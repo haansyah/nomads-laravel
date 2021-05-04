@@ -25,109 +25,70 @@
           <!-- START: Bagian Kiri -->
           <div class="col-lg-8 pl-lg-0">
             <div class="card card-details">
-              <h1>Bromo Malang</h1>
-              <p>Republic of Indonesia</p>
-              <div class="gallery">
-                <div class="xzoom-container">
-                  <img
-                    src="./frontend/images/details.jpg"
-                    class="xzoom"
-                    id="xzoom-default"
-                    alt=""
-                    xoriginal="./frontend/images/details.jpg"
-                  />
+              <h1>{{ $item->title }}</h1>
+              <p>{{ $item->location }}</p>
+              @if ($item->galleries->count())
+                <div class="gallery">
+                  <div class="xzoom-container">
+                    <img
+                      src="{{ Storage::url($item->galleries->first()->image )}}"
+                      class="xzoom"
+                      id="xzoom-default"
+                      alt=""
+                      xoriginal="{{ Storage::url($item->galleries->first()->image )}}"
+                    />
+                  </div>
+                  <div class="xzoom-thumbs">
+                    @foreach ($item->galleries as $gallery)
+                      <a href="{{ Storage::url($gallery->image) }}">
+                        <img
+                          src="{{ Storage::url($gallery->image) }}"
+                          class="xzoom-gallery"
+                          width="128"
+                          xpreview="{{ Storage::url($gallery->image) }}"
+                          alt=""
+                        />
+                      </a>
+                    @endforeach
+                  </div>
                 </div>
-                <div class="xzoom-thumbs">
-                  <a href="./frontend/images/details.jpg">
-                    <img
-                      src="./frontend/images/details.jpg"
-                      class="xzoom-gallery"
-                      width="128"
-                      xpreview="./frontend/images/details.jpg"
-                      alt=""
-                    />
-                  </a>
-                  <a href="./frontend/images/thumb-1.jpg">
-                    <img
-                      src="./frontend/images/thumb-1.jpg"
-                      class="xzoom-gallery"
-                      width="128"
-                      xpreview="./frontend/images/thumb-1.jpg"
-                      alt=""
-                    />
-                  </a>
-                  <a href="./frontend/images/thumb-2.jpg">
-                    <img
-                      src="./frontend/images/thumb-2.jpg"
-                      class="xzoom-gallery"
-                      width="128"
-                      xpreview="./frontend/images/thumb-2.jpg"
-                      alt=""
-                    />
-                  </a>
-                  <a href="./frontend/images/thumb-3.jpg">
-                    <img
-                      src="./frontend/images/thumb-3.jpg"
-                      class="xzoom-gallery"
-                      width="128"
-                      xpreview="./frontend/images/thumb-3.jpg"
-                      alt=""
-                    />
-                  </a>
-                  <a href="./frontend/images/thumb-4.jpg">
-                    <img
-                      src="./frontend/images/thumb-4.jpg"
-                      class="xzoom-gallery"
-                      width="128"
-                      xpreview="./frontend/images/thumb-4.jpg"
-                      alt=""
-                    />
-                  </a>
-                </div>
-              </div>
+              @endif
               <h2>Tentang Wisata</h2>
               <p>
-                Nusa Penida adalah sebuah pulau bagian dari negara Republik
-                Indonesia yang terletak di sebelah tenggara Bali yang
-                dipisahkan oleh Selat Badung. Di dekat pulau ini terdapat juga
-                pulau-pulau kecil lainnya yaitu Nusa Ceningan
-              </p>
-              <p>
-                Perbukitan dan kapur karang merupakan kondisi tanah di pulau
-                ini, salah satunya gunung bukit tertinggi bernama Gunung
+                {{!! $item->about !!}}
               </p>
               <div class="features row">
                 <div class="col-md-4">
                   <img
-                    src="frontend/images/ic_event.jpg"
+                    src="{{ url('./frontend/images/ic_event.jpg')}}"
                     alt=""
                     class="features-image"
                   />
                   <div class="description">
                     <h3>Featured Event</h3>
-                    <p>Tari Kecak</p>
+                    <p>{{ $item->featured_event}}</p>
                   </div>
                 </div>
                 <div class="col-md-4 border-left">
                   <img
-                    src="frontend/images/ic_bahasa.jpg"
+                    src="{{ url('./frontend/images/ic_bahasa.jpg')}}"
                     alt=""
                     class="features-image"
                   />
                   <div class="description">
                     <h3>Language</h3>
-                    <p>Bahasa Indonesia</p>
+                    <p>{{ $item->language}}</p>
                   </div>
                 </div>
                 <div class="col-md-4 border-left">
                   <img
-                    src="frontend/images/ic_food.jpg"
+                    src="{{ url('./frontend/images/ic_food.jpg')}}"
                     alt=""
                     class="features-image"
                   />
                   <div class="description">
                     <h3>Foods</h3>
-                    <p>Local Foods</p>
+                    <p>{{ $item->foods}}</p>
                   </div>
                 </div>
               </div>
@@ -140,27 +101,27 @@
               <h2>Members Are Going</h2>
               <div class="members my-2">
                 <img
-                  src="./frontend/images/member-1.jpg"
+                  src="{{url('./frontend/images/member-1.jpg')}}"
                   alt=""
                   class="member-image mr-1"
                 />
                 <img
-                  src="./frontend/images/member-2.jpg"
+                  src="{{url('./frontend/images/member-2.jpg')}}"
                   alt=""
                   class="member-image mr-1"
                 />
                 <img
-                  src="./frontend/images/member-3.jpg"
+                  src="{{url('./frontend/images/member-3.jpg')}}"
                   alt=""
                   class="member-image mr-1"
                 />
                 <img
-                  src="./frontend/images/member-4.jpg"
+                  src="{{url('./frontend/images/member-4.jpg')}}"
                   alt=""
                   class="member-image mr-1"
                 />
                 <img
-                  src="./frontend/images/member-5.jpg"
+                  src="{{url('./frontend/images/member-5.jpg')}}"
                   alt=""
                   class="member-image mr-1"
                 />
@@ -170,28 +131,38 @@
               <table class="trip-informations">
                 <tr>
                   <th width="50%">Date of Departure</th>
-                  <td width="50%" class="text-right">22 Aug, 2019</td>
+                  <td width="50%" class="text-right">{{ \Carbon\Carbon::create($item->date_of_departure)->format('F n, Y')}}</td>
                 </tr>
                 <tr>
                   <th width="50%">Duration</th>
-                  <td width="50%" class="text-right">4D, 3N</td>
+                  <td width="50%" class="text-right">{{ $item->duration }}</td>
                 </tr>
                 <tr>
                   <th width="50%">Type</th>
-                  <td width="50%" class="text-right">Open Trip</td>
+                  <td width="50%" class="text-right">{{ $item->type }}</td>
                 </tr>
                 <tr>
                   <th width="50%">Price</th>
-                  <td width="50%" class="text-right">$80,00 / person</td>
+                  <td width="50%" class="text-right">${{ $item->price }},00 / person</td>
                 </tr>
               </table>
             </div>
             <div class="join-container">
-              <a
-                href="{{route('checkout')}}"
+              @auth
+                  <form action="" method="POST">
+                    <button class="btn btn-block btn-join-now mt-3 py-2" type="submit">
+                      Join Now
+                    </button>
+                  </form>
+              @endauth
+
+              @guest
+                <a
+                href="{{route('login')}}"
                 class="btn btn-block btn-join-now mt-3 py-2"
-                >Join Now</a
+                >Login or Register to Join</a
               >
+              @endguest
             </div>
           </div>
           <!-- END: Bagian Kanan -->
