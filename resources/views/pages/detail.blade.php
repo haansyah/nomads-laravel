@@ -45,6 +45,8 @@
                           src="{{ Storage::url($gallery->image) }}"
                           class="xzoom-gallery"
                           width="128"
+                          height="80"
+                          style="object-fit: cover"
                           xpreview="{{ Storage::url($gallery->image) }}"
                           alt=""
                         />
@@ -149,7 +151,8 @@
             </div>
             <div class="join-container">
               @auth
-                  <form action="" method="POST">
+                  <form action="{{ route('checkout-process', $item->id)}}" method="POST">
+                    @csrf
                     <button class="btn btn-block btn-join-now mt-3 py-2" type="submit">
                       Join Now
                     </button>

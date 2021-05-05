@@ -62,19 +62,19 @@ class CheckoutController extends Controller
         $transaction->save();
         $item->delete();
 
-        return redirect()->route('checkout', $item->transaction_id);
+        return redirect()->route('checkout', $item->transactions_id);
     }
 
     public function create(Request $request, $id)
     {
         $request->validate([
-            'username' => 'required|string|exists:users, username',
+            'username' => 'required|string|exists:users,username',
             'is_visa' => 'required|boolean',
             'doe_passport' => 'required'
         ]);
 
         $data = $request->all();
-        $data['transaction_id'] = $id;
+        $data['transactions_id'] = $id;
 
         TransactionDetail::create($data);
 
@@ -95,10 +95,10 @@ class CheckoutController extends Controller
     public function success(Request $request, $id)
     {
         $transaction = Transaction::findOrFail($id);
-        $transaction->transation_status = 'PENDING';
+        $transaction->transaction_status = 'PENDING';
 
         $transaction->save();
-        
+
         return view('pages.success');
     }
 }
